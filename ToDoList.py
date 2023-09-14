@@ -4,6 +4,7 @@ from tkinter import simpledialog
 import json
 from pathlib import Path
 savedListPath = Path("List.json")
+backUpPath = Path('backupList.json')
 
 class ToDoList:
     def __init__(self):
@@ -21,6 +22,8 @@ class ToDoList:
         list_box.delete(index)
     def save_list(self):
         with open('List.json','w') as f:
+            json.dump(self.items,f)
+        with open('backupList.json','w') as f:
             json.dump(self.items,f)
     def load_list(self):
         if(not savedListPath.exists()):
